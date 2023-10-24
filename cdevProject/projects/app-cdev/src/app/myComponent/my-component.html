@@ -1,0 +1,16 @@
+<h1>Hola mundo</h1>
+<p>{{currentDate}}</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.status}}</td>
+  </tr>
+</table>
+
+title author summary dateRelease

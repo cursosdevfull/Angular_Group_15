@@ -1,0 +1,15 @@
+<!--<table>
+  <tr *ngFor="let novel of novels">
+    <td>{{ novel.title }}</td>
+    <td>{{ novel.author }}</td>
+    <td>{{ novel.summary }}</td>
+    <td>
+      <img src="{{ novel.imageUrl }}" alt="" />
+    </td>
+  </tr>
+</table>-->
+
+<cdev-info-novel
+  *ngFor="let novel of novels"
+  [infoNovel]="novel"
+></cdev-info-novel>
