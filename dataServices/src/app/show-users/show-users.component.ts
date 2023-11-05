@@ -1,25 +1,21 @@
 import { Component, Inject } from '@angular/core';
 
-import { serviceUser } from '../app.module';
-import { UserService } from '../user.service';
-
 @Component({
   selector: 'app-show-users',
   templateUrl: './show-users.component.html',
   styleUrls: ['./show-users.component.css'],
 })
 export class ShowUsersComponent {
-  list: string[] = [];
+  list: any = [];
 
-  //constructor(@Inject('USER_SERVICE') userService: UserService) {
-  //constructor(@Inject(UsuarioService) userService: UserService) {
-  constructor(@Inject(serviceUser) userService: UserService) {
-    const service = userService; //UserService.create();
-    this.list = service.getList();
+  constructor(@Inject('USER_SERVICE') service: any) {
+    //constructor(service: UserService) {
+    this.list = service.getUsers();
 
     setInterval(() => {
-      service.remove();
-      this.list = service.getList();
+      const newUser = { name: `user ${this.list.length + 1}`, age: 30 };
+      service.addUser(newUser);
+      //this.list.push(newUser);
     }, 2000);
   }
 }
