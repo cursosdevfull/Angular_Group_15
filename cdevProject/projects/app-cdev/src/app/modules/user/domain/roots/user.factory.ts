@@ -1,12 +1,14 @@
 import { EmailVO } from '../value-objects/email.vo';
 import { FileVO } from '../value-objects/file.vo';
 import { FullnameVO } from '../value-objects/fullname.vo';
+import { IdVO } from '../value-objects/id.vo';
 import { PasswordVO } from '../value-objects/password.vo';
 import { RolesVO } from '../value-objects/roles.vo';
 import { User, UserProperties } from './user';
 
 export class UserFactory {
   static create(properties: UserProperties) {
+    IdVO.create(properties.id);
     PasswordVO.create(properties.password);
     FullnameVO.create(properties.fullname);
     EmailVO.create(properties.email);
