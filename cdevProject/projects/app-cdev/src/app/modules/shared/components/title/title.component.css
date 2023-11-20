@@ -1,0 +1,29 @@
+.toolbar {
+  background-color: white !important;
+  height: 70px;
+  border-bottom: 1px solid rgb(226, 232, 240);
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.info h2 {
+  font-size: 24px;
+  color: rgb(30, 41, 49);
+  font-weight: 600;
+  line-height: 70px;
+  margin: 0;
+}
+
+.info mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}

@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <button class="user" mat-button [matMenuTriggerFor]="menu">
+    <div class="info-user">
+      <span>Username</span>
+      <mat-icon>expand_more</mat-icon>
+    </div>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>lock</mat-icon>
+      Block session
+    </button>
+    <button mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>

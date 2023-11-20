@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { SharedModule } from '../../../shared/shared.module';
 import { UserCreate } from '../../application/user-create';
 import { UserGetAll } from '../../application/user-get-all';
 import { UserInfrastructure } from '../user.infrastructure';
@@ -11,7 +12,7 @@ const providersInfrastructure = [UserInfrastructure];
 
 @NgModule({
   declarations: [ListUserComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule],
   exports: [ListUserComponent],
   providers: [...providersApplication, ...providersInfrastructure],
 })

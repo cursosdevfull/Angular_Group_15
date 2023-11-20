@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container h1 {
+  font-size: 2rem;
+}
+
+.container form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container .warnCapsLock {
+  display: inline-block;
+  padding: 5px;
+  font-size: 14px;
+  color: blue;
+  font-weight: bold;
+  text-align: center;
+}

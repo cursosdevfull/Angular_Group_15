@@ -1,7 +1,17 @@
-<p>AppComponent</p>
+<!-- <p>AppComponent</p>
 <span>{{ currentDate }}</span>
 <ul>
   <li><a routerLink="/user">Users</a></li>
   <li><a routerLink="/course">Courses</a></li>
 </ul>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+
+<mat-sidenav-container>
+  <mat-sidenav opened="true" mode="side" *ngIf="showMenu">
+    <cdev-menu></cdev-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <cdev-header *ngIf="showMenu"></cdev-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

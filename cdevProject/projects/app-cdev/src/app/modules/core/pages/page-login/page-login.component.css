@@ -1,0 +1,33 @@
+div {
+  height: 100vh;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  background-color: cyan;
+}
+
+.info-company {
+  background-color: #016b45;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 70%;
+}
+
+.info-company div {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.info-company img {
+  width: 100%;
+  max-width: 200px;
+}
+
+.login {
+  flex: 1 1 30%;
+  background-color: whitesmoke;
+}

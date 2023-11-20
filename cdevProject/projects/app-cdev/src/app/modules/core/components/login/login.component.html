@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>Credentials</h1>
+  <form [formGroup]="fg">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email" />
+      <mat-error *ngIf="fg.get('email').hasError('required')"
+        >Email is required</mat-error
+      >
+      <mat-error *ngIf="fg.get('email').hasError('pattern')"
+        >Email must have email format</mat-error
+      >
+      <mat-error *ngIf="fg.get('email').hasError('filterDomains')">
+        Domains not allowed: {{ fg.get("email").getError("filterDomains") }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        cdev-caps-lock
+        (onCapsLock)="capsLockOn = $event"
+      />
+      <mat-error>Password is required</mat-error>
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Confirm password</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" />
+      <mat-error>Confirm is required</mat-error>
+    </mat-form-field> -->
+    <!-- <mat-error *ngIf="fg.hasError('passwordAndConfirm')"
+      >Password and confirm don't match</mat-error
+    > -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="login()"
+      [disabled]="fg.invalid"
+    >
+      <mat-icon>lock_open</mat-icon>
+      Login
+    </button>
+    <span class="warnCapsLock" *ngIf="capsLockOn">Caps Lock is active</span>
+  </form>
+</div>
