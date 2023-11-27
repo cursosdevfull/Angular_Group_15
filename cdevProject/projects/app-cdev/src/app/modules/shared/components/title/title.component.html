@@ -2,5 +2,10 @@
   <div class="info">
     <mat-icon>{{ icon }}</mat-icon>
     <h2>{{ title }}</h2>
+    <span>{{ quantity | currency : "PEN" }}</span>
+    <span>{{ text | recortar : 20 }}</span>
+  </div>
+  <div class="actions">
+    <ng-content></ng-content>
   </div>
 </div>

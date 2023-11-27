@@ -1,10 +1,25 @@
 import { Component } from '@angular/core';
 
+import { ILayout } from './config/modules/layout/layout.interface';
+import { LayoutService } from './config/modules/layout/layout.service';
+
 @Component({
   selector: 'cdev-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  showMenu = true;
+  showMenu: boolean = false;
+  showHeader: boolean = false;
+
+  constructor(private readonly layoutService: LayoutService) {
+    this.layoutService.configuration.subscribe((layout: ILayout) => {
+      this.showMenu = layout.showMenu;
+      this.showHeader = layout.showHeader;
+    });
+
+    // console.log('AppComponent constructor');
+    // this.showMenu = layoutService.showMenu;
+    // this.showHeader = layoutService.showHeader;
+  }
 }

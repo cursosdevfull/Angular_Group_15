@@ -1,0 +1,10 @@
+<ng-content></ng-content>
+<table mat-table [dataSource]="data">
+  <ng-container [matColumnDef]="meta.field" *ngFor="let meta of metadata">
+    <th mat-header-cell *matHeaderCellDef>{{ meta.label }}</th>
+    <td mat-cell *matCellDef="let element">{{ element[meta.field] }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns" class="hoverRow"></tr>
+</table>

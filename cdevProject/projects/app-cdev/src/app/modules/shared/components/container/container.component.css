@@ -1,0 +1,10 @@
+.contenedor {
+  padding: 20px;
+  background-color: whitesmoke;
+  box-sizing: border-box;
+  height: calc(100vh - 64px - 71px);
+}
+
+mat-card {
+  height: 100%;
+}

@@ -11,6 +11,8 @@ import { MenuService } from '../../../core/services/menu.service';
 export class TitleComponent {
   icon: string;
   title: string;
+  quantity: number = 215.34;
+  text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit.';
 
   constructor(
     private readonly menuService: MenuService,

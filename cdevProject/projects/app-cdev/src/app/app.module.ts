@@ -1,11 +1,15 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { Paginator } from './config/classes/paginator';
+import { ILayout } from './config/modules/layout/layout.interface';
+import { LayoutModule } from './config/modules/layout/layout.module';
 import { CoreModule } from './modules/core/core.module';
 import { PageLoginComponent } from './modules/core/pages/page-login/page-login.component';
 import { ListCourseComponent } from './modules/course/infrastructure/presentation/components/list-course/list-course.component';
@@ -19,6 +23,8 @@ const routes: Routes = [
   { path: 'course', component: ListCourseComponent },
 ];
 
+const layoutConfig: ILayout = { showHeader: false, showMenu: false };
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,8 +36,14 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatSidenavModule,
     CoreModule,
+    LayoutModule.forRoot(layoutConfig),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useClass: Paginator,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -17,3 +17,11 @@ mat-error {
   font-size: 12px;
   font-style: italic;
 }
+
+.maxHeightScrollbar {
+  height: 90% !important;
+}
+
+.align-right {
+  text-align: right !important;
+}
