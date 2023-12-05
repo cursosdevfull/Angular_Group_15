@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
+import { Pagination } from '../../core/helpers/pagination';
+import { StorageAdapter } from '../../core/storage/infrastructure/storage.adapter';
 import { UserRepository } from '../domain/repositories/user.repository';
 import { User } from '../domain/roots/user';
 import { UserDto } from './dtos/user.dto';
@@ -39,7 +41,25 @@ export interface Company {
 
 @Injectable()
 export class UserInfrastructure implements UserRepository {
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly storage: StorageAdapter
+  ) {}
+
+  listByPage(page: number, limit: number): Observable<Pagination<User>> {
+    const token = this.storage.get('accessToken');
+
+    return this.http.get<Pagination<User>>(
+      `https://5eda-38-25-17-118.ngrok-free.app/v1/user/page/${
+        page + 1
+      }/limit/${limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  }
 
   async add(user: User): Promise<User> {
     // await this.validateUser(user);

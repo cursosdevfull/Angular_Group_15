@@ -9,6 +9,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { AuthApplication } from '../../auth/application/auth.application';
+import { Auth } from '../../auth/domain/auth';
+
 @Component({
   selector: 'cdev-login',
   templateUrl: './login.component.html',
@@ -18,7 +21,10 @@ export class LoginComponent {
   fg: FormGroup;
   capsLockOn: boolean = false;
 
-  constructor(private readonly router: Router) {
+  constructor(
+    private readonly router: Router,
+    private readonly application: AuthApplication
+  ) {
     this.createFormLogin();
   }
 
@@ -42,8 +48,8 @@ export class LoginComponent {
   validatorPasswordAndConfirm(fg: AbstractControl) {
     if (!fg.get('password') || !fg.get('confirmPassword')) return null;
 
-    const password = fg.get('password').value;
-    const confirmPassword = fg.get('confirmPassword').value;
+    const password = fg.get('password')?.value;
+    const confirmPassword = fg.get('confirmPassword')?.value;
 
     if (password === confirmPassword) return null;
 
@@ -62,7 +68,7 @@ export class LoginComponent {
   }
 
   validatorDomainEmail(...filterDomains: string[]): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors => {
+    return (control: AbstractControl): ValidationErrors | null => {
       const email = control.value;
       if (!email) return null;
 
@@ -74,8 +80,13 @@ export class LoginComponent {
   }
 
   login() {
+    const { email, password } = this.fg.value;
+    const auth = new Auth(email, password);
+
+    this.application.login(auth);
+
     //if (this.fg.valid) {
-    this.router.navigate(['/course']);
+    //this.router.navigate(['/course']);
     //}
   }
 

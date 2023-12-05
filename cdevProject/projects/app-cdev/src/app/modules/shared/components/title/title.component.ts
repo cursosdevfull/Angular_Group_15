@@ -19,7 +19,7 @@ export class TitleComponent {
     private readonly activatedRoute: ActivatedRoute
   ) {
     const currentPath =
-      '/' + this.activatedRoute.snapshot.pathFromRoot[1].routeConfig.path;
+      '/' + this.activatedRoute.snapshot.pathFromRoot[1].routeConfig!.path;
 
     const menuItems = this.menuService.getMenuItems();
     const menuItem = menuItems.find((item) => item.path === currentPath);

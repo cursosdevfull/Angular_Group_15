@@ -4,14 +4,14 @@
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput type="text" formControlName="email" />
-      <mat-error *ngIf="fg.get('email').hasError('required')"
+      <mat-error *ngIf="fg.get('email')?.hasError('required')"
         >Email is required</mat-error
       >
-      <mat-error *ngIf="fg.get('email').hasError('pattern')"
+      <mat-error *ngIf="fg.get('email')?.hasError('pattern')"
         >Email must have email format</mat-error
       >
-      <mat-error *ngIf="fg.get('email').hasError('filterDomains')">
-        Domains not allowed: {{ fg.get("email").getError("filterDomains") }}
+      <mat-error *ngIf="fg.get('email')?.hasError('filterDomains')">
+        Domains not allowed: {{ fg.get("email")?.getError("filterDomains") }}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">

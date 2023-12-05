@@ -1,8 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { LayoutService } from '../../../../../../config/modules/layout/layout.service';
+import { Metadatas } from '../../../../../shared/components/table/metadata.interface';
+import { UserByPage } from '../../../../application/user-by-page';
 import { UserCreate } from '../../../../application/user-create';
 import { UserGetAll } from '../../../../application/user-get-all';
 import { User } from '../../../../domain/roots/user';
@@ -12,29 +14,16 @@ import { User } from '../../../../domain/roots/user';
   templateUrl: './list-user.component.html',
 })
 export class ListUserComponent {
-  data = [
-    { id: 1, name: 'John', age: 20 },
-    { id: 2, name: 'Jane', age: 24 },
-    { id: 3, name: 'Susan', age: 16 },
-    { id: 4, name: 'Chris', age: 55 },
-    { id: 5, name: 'Dan', age: 40 },
-    { id: 6, name: 'Mike', age: 30 },
-    { id: 7, name: 'Tom', age: 18 },
-    { id: 8, name: 'Kate', age: 17 },
-    { id: 9, name: 'Ed', age: 28 },
-    { id: 10, name: 'Steve', age: 60 },
-  ];
-
-  metadata = [
-    { field: 'id', label: 'ID' },
-    { field: 'name', label: 'Nombre' },
-    { field: 'age', label: 'Edad' },
-  ];
-
   users: User[] = [];
   subject = new Subject<void>();
 
   flexDirection = 'row';
+
+  pageSize = 30;
+
+  quantityRecords = 0;
+
+  data: Array<User> = [];
 
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
@@ -44,9 +33,19 @@ export class ListUserComponent {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
+  metadata: Metadatas = [
+    { field: 'fullname', label: 'Nombre' },
+    {
+      field: 'email',
+      label: 'Correo',
+    },
+    //{ field: 'duration', label: 'Duración' },
+  ];
+
   constructor(
     userCreate: UserCreate,
     private readonly userGetAll: UserGetAll,
+    private readonly userByPage: UserByPage,
     private readonly layoutService: LayoutService,
     breakpointObserver: BreakpointObserver
   ) {
@@ -70,30 +69,23 @@ export class ListUserComponent {
           }
         }
       });
-    this.loadUsers();
+    this.loadPage(0);
   }
 
-  loadUsers() {
-    // this.userGetAll.execute().then((users) => {
-    //   this.users = users;
-    // });
-    // this.userGetAll.execute().subscribe((users) => {
-    //   this.users = users;
-    // });
-
-    this.userGetAll
-      .execute()
-      .pipe(takeUntil(this.subject))
-      .subscribe({
-        next: (users) => {
-          this.users = users;
-        },
-      });
+  loadPage(page: number) {
+    this.userByPage.execute(page, this.pageSize).subscribe((data) => {
+      this.data = data.data;
+      this.quantityRecords = data.total;
+    });
   }
 
   ngOnDestroy(): void {
     console.log('ngOnDestroy');
     this.subject.next();
     this.subject.unsubscribe();
+  }
+
+  changePage(page: number) {
+    this.loadPage(page);
   }
 }

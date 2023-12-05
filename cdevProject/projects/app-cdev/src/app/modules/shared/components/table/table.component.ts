@@ -35,7 +35,7 @@ export class TableComponent {
           console.log('obj: ', obj);
         }
         this.data.forEach((d: any) => {
-          d[m.field] = obj.transform(d[m.field], m.transform.parameter); //this[m.transform.name](d[m.field], m.transform.parameter);
+          d[m.field] = obj.transform(d[m.field], m.transform?.parameter); //this[m.transform.name](d[m.field], m.transform.parameter);
         });
       }
     });

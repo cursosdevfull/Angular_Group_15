@@ -11,15 +11,23 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { LottieModule } from 'ngx-lottie';
 
+import { AuthApplication } from './auth/application/auth.application';
+import { AuthAdapter } from './auth/infrastructure/auth.adapter';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CapsLockDirective } from './directives/caps-lock.directive';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
+import { StorageApplication } from './storage/application/storage.application';
+import { StorageAdapter } from './storage/infrastructure/storage.adapter';
 
 export function playerFactory() {
   return import('lottie-web');
 }
+
+const application = [AuthApplication, StorageApplication];
+const infrastructure = [AuthAdapter, StorageAdapter];
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -42,5 +50,6 @@ export function playerFactory() {
     RouterModule,
   ],
   exports: [HeaderComponent, MenuComponent],
+  providers: [...application, ...infrastructure],
 })
 export class CoreModule {}

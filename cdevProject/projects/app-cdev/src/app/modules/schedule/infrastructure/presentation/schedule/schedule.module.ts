@@ -6,15 +6,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { SharedModule } from '../../../../shared/shared.module';
-import { CourseApplication } from '../../../application/course.application';
-import { CourseAdapter } from '../../course.adapter';
-import { ListCourseComponent } from '../components/list-course/list-course.component';
+import { ScheduleApplication } from '../../../application/schedule.application';
+import { ScheduleAdapter } from '../../schedule.adapter';
+import { ListScheduleComponent } from '../components/list-schedule/list-schedule.component';
 
-const application = [CourseApplication];
-const infrastructure = [CourseAdapter];
+const application = [ScheduleApplication];
+const infrastructure = [ScheduleAdapter];
 
 @NgModule({
-  declarations: [ListCourseComponent],
+  declarations: [ListScheduleComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -23,7 +23,7 @@ const infrastructure = [CourseAdapter];
     MatButtonModule,
     MatTooltipModule,
   ],
-  exports: [ListCourseComponent],
+  exports: [ListScheduleComponent],
   providers: [...application, ...infrastructure],
 })
-export class CourseModule {}
+export class ScheduleModule {}
