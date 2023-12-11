@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+  <h3>{{ title }}</h3>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+<form mat-dialog-content [formGroup]="fg">
+  <div>
+    <cdev-photo></cdev-photo>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Fullname</mat-label>
+      <input matInput formControlName="fullname" required />
+      <mat-error>Field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+      <mat-error>Field is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" required />
+      <mat-error>Field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Roles</mat-label>
+      <mat-select formControlName="roles" multiple [value]="rolesSelected">
+        <!-- <mat-select-trigger>
+          {{ fg.get("roles") ? fg.get("roles")?.value.name : "" }}
+        </mat-select-trigger> -->
+        <!-- <mat-select-trigger>
+          {{toppings.value?.[0] || ''}}
+          <span *ngIf="(toppings.value?.length || 0) > 1">
+            (+{{ (toppings.value?.length || 0) - 1 }}
+            {{ toppings.value?.length === 2 ? "other" : "others" }})
+          </span>
+        </mat-select-trigger> -->
+        <mat-option *ngFor="let role of roles" [value]="role.properties().id">{{
+          role.properties().name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

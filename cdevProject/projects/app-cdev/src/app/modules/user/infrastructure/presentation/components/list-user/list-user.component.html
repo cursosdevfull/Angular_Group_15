@@ -1,4 +1,9 @@
-<cdev-title></cdev-title>
+<cdev-title>
+  <button mat-raised-button color="primary" (click)="openModal()">
+    <mat-icon>add</mat-icon>
+    <span>ADD</span>
+  </button>
+</cdev-title>
 
 <cdev-container>
   <ng-scrollbar class="maxHeightScrollbar">
@@ -6,7 +11,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row" class="align-right">
-          <button mat-icon-button color="primary" matTooltip="EDIT">
+          <button mat-icon-button color="primary" matTooltip="EDIT" (click)="openModal(row)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="accent" matTooltip="DELETE">

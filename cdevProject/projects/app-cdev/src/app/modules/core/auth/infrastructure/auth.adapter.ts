@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
+import variables from '../../../../../assets/config/enviroment.json';
 import { Auth } from '../domain/auth';
 import { AuthTokens } from '../domain/auth-tokens';
 import { AuthPort } from '../domain/ports/auth.port';
@@ -13,10 +14,7 @@ export class AuthAdapter implements AuthPort {
 
   login(auth: Auth): Observable<AuthTokens> {
     return this.http
-      .post<TokensData>(
-        'https://5eda-38-25-17-118.ngrok-free.app/v1/auth/login',
-        auth.properties()
-      )
+      .post<TokensData>(`${variables.apiUrl}/v1/auth/login`, auth.properties())
       .pipe(
         map((data: TokensData) => {
           return AuthTokensDto.fromDataToDomain(data);
@@ -29,6 +27,14 @@ export class AuthAdapter implements AuthPort {
   }
 
   getNewAccessToken(refreshToken: string): Observable<any> {
-    return of({});
+    return this.http
+      .get<TokensData>(
+        `${variables.apiUrl}/v1/auth/get-new-access-token?refreshToken=${refreshToken}`
+      )
+      .pipe(
+        map((data: TokensData) => {
+          return AuthTokensDto.fromDataToDomain(data);
+        })
+      );
   }
 }

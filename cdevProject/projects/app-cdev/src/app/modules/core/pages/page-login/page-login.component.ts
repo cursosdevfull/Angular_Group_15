@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AnimationOptions } from 'ngx-lottie';
+import { LayoutService } from 'projects/app-cdev/src/app/config/modules/layout/layout.service';
 
 @Component({
   selector: 'cdev-page-login',
@@ -15,6 +16,10 @@ export class PageLoginComponent {
     maxWidth: '80%',
     maxHeight: '100vh',
   };
+
+  constructor(readonly layoutService: LayoutService) {
+    layoutService.configuration = { showMenu: false, showHeader: false };
+  }
 }
 
 interface User {

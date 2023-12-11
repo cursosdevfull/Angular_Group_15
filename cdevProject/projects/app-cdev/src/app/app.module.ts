@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,6 +14,7 @@ import { CoreModule } from './modules/core/core.module';
 import { PageLoginComponent } from './modules/core/pages/page-login/page-login.component';
 import { ListCourseComponent } from './modules/course/infrastructure/presentation/components/list-course/list-course.component';
 import { CourseModule } from './modules/course/infrastructure/presentation/course/course.module';
+import { TokenInterceptor } from './modules/shared/interceptors/token.interceptor';
 import { ListUserComponent } from './modules/user/infrastructure/presentation/components/list-user/list-user.component';
 import { UserModule } from './modules/user/infrastructure/presentation/user.module';
 
@@ -42,6 +43,11 @@ const layoutConfig: ILayout = { showHeader: false, showMenu: false };
     {
       provide: MatPaginatorIntl,
       useClass: Paginator,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

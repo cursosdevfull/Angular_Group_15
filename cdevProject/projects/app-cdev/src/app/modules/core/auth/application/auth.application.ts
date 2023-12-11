@@ -23,4 +23,14 @@ export class AuthApplication {
       },
     });
   }
+
+  logout() {
+    this.storage.remove('accessToken');
+    this.storage.remove('refreshToken');
+    this.router.navigate(['/']);
+  }
+
+  getNewAccessToken(refreshToken: string) {
+    return this.adapter.getNewAccessToken(refreshToken);
+  }
 }

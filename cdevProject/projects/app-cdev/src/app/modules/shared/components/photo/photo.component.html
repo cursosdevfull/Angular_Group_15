@@ -1,0 +1,10 @@
+<div
+  class="photo"
+  [ngClass]="{ hover: dragFile }"
+  upload
+  (onHover)="dragFile = $event"
+  (onFileDropped)="onFileDropped($event)"
+  (click)="loadImage()"
+  #photo
+></div>
+<input type="file" #file (change)="selectImage($event)" />

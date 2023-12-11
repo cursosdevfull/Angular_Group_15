@@ -4,10 +4,12 @@ import { Subject } from 'rxjs';
 
 import { LayoutService } from '../../../../../../config/modules/layout/layout.service';
 import { Metadatas } from '../../../../../shared/components/table/metadata.interface';
+import { UtilService } from '../../../../../shared/services/util.service';
 import { UserByPage } from '../../../../application/user-by-page';
 import { UserCreate } from '../../../../application/user-create';
 import { UserGetAll } from '../../../../application/user-get-all';
 import { User } from '../../../../domain/roots/user';
+import { FormUserComponent } from '../form-user/form-user.component';
 
 @Component({
   selector: 'cdev-list-user',
@@ -47,6 +49,7 @@ export class ListUserComponent {
     private readonly userGetAll: UserGetAll,
     private readonly userByPage: UserByPage,
     private readonly layoutService: LayoutService,
+    private readonly utilService: UtilService,
     breakpointObserver: BreakpointObserver
   ) {
     layoutService.configuration = { showMenu: true, showHeader: true };
@@ -87,5 +90,9 @@ export class ListUserComponent {
 
   changePage(page: number) {
     this.loadPage(page);
+  }
+
+  openModal(data?: User) {
+    this.utilService.showModalWindow(FormUserComponent, 'modal-user', data);
   }
 }

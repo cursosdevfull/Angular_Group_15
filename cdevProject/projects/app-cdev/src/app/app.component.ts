@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { environment } from '../environments/environment';
 import { ILayout } from './config/modules/layout/layout.interface';
 import { LayoutService } from './config/modules/layout/layout.service';
 
@@ -17,6 +18,8 @@ export class AppComponent {
       this.showMenu = layout.showMenu;
       this.showHeader = layout.showHeader;
     });
+
+    console.log('ambiente', environment.apiUrl);
 
     // console.log('AppComponent constructor');
     // this.showMenu = layoutService.showMenu;

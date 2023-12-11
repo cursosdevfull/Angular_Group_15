@@ -5,8 +5,10 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MaterialModule } from '../material/material.module';
 import { ContainerComponent } from './components/container/container.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { PhotoComponent } from './components/photo/photo.component';
 import { TableComponent } from './components/table/table.component';
 import { TitleComponent } from './components/title/title.component';
+import { UploadDirective } from './directives/upload.directive';
 import { RecortarPipe } from './pipes/recortar.pipe';
 
 @NgModule({
@@ -16,6 +18,8 @@ import { RecortarPipe } from './pipes/recortar.pipe';
     ContainerComponent,
     PaginatorComponent,
     RecortarPipe,
+    PhotoComponent,
+    UploadDirective,
   ],
   imports: [CommonModule, MaterialModule, NgScrollbarModule],
   exports: [
@@ -25,6 +29,7 @@ import { RecortarPipe } from './pipes/recortar.pipe';
     NgScrollbarModule,
     PaginatorComponent,
     RecortarPipe,
+    PhotoComponent,
   ],
 })
 export class SharedModule {}
