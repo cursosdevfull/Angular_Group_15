@@ -5,44 +5,67 @@
   </button>
 </mat-toolbar>
 <form mat-dialog-content [formGroup]="fg">
-  <div>
-    <cdev-photo></cdev-photo>
+  <div class="fields">
+    <div>
+      <cdev-photo
+        formControlName="image"
+        [photoByDefault]="photoToShow"
+      ></cdev-photo>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Fullname</mat-label>
+        <input matInput formControlName="fullname" required />
+        <mat-error>Field is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required />
+        <mat-error>Field is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="MALE">MALE</mat-option>
+          <mat-option value="FEMALE">FEMALE</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          [required]="data ? false : true"
+        />
+        <mat-error>Field is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Roles</mat-label>
+        <mat-select formControlName="roles" multiple>
+          <mat-select-trigger>
+            {{ formControlRoles.value }}
+          </mat-select-trigger>
+          <mat-option
+            *ngFor="let role of listRoles"
+            [value]="role.properties().name"
+            >{{ role.properties().name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-  <div>
-    <mat-form-field>
-      <mat-label>Fullname</mat-label>
-      <input matInput formControlName="fullname" required />
-      <mat-error>Field is required</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" required />
-      <mat-error>Field is required</mat-error>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" required />
-      <mat-error>Field is required</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Roles</mat-label>
-      <mat-select formControlName="roles" multiple [value]="rolesSelected">
-        <!-- <mat-select-trigger>
-          {{ fg.get("roles") ? fg.get("roles")?.value.name : "" }}
-        </mat-select-trigger> -->
-        <!-- <mat-select-trigger>
-          {{toppings.value?.[0] || ''}}
-          <span *ngIf="(toppings.value?.length || 0) > 1">
-            (+{{ (toppings.value?.length || 0) - 1 }}
-            {{ toppings.value?.length === 2 ? "other" : "others" }})
-          </span>
-        </mat-select-trigger> -->
-        <mat-option *ngFor="let role of roles" [value]="role.properties().id">{{
-          role.properties().name
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="form-buttons">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="fg.invalid"
+      (click)="save()"
+    >
+      Save
+    </button>
+    <button mat-button mat-dialog-close type="button">Close</button>
   </div>
 </form>

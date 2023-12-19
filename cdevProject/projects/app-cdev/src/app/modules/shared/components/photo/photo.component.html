@@ -6,5 +6,30 @@
   (onFileDropped)="onFileDropped($event)"
   (click)="loadImage()"
   #photo
+  *ngIf="!isUsingWebcam"
 ></div>
+<webcam
+  *ngIf="isUsingWebcam"
+  [height]="251"
+  [width]="245"
+  [trigger]="triggerSnapshotWebcamAsObservable()"
+  (imageCapture)="onImageCapture($event)"
+></webcam>
+<div>
+  <mat-slide-toggle
+    color="primary"
+    (change)="changeOriginPhoto($event)"
+    [checked]="isUsingWebcam"
+    >Use webcam</mat-slide-toggle
+  >
+  <button
+    mat-icon-button
+    color="primary"
+    *ngIf="isUsingWebcam"
+    type="button"
+    (click)="takePic()"
+  >
+    <mat-icon>add_a_photo</mat-icon>
+  </button>
+</div>
 <input type="file" #file (change)="selectImage($event)" />

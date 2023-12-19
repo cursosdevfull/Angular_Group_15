@@ -6,14 +6,14 @@ import { User } from '../domain/roots/user';
 import { UserInfrastructure } from '../infrastructure/user.infrastructure';
 
 @Injectable()
-export class UserCreate {
+export class UserDelete {
   repository: UserRepository;
 
   constructor(@Inject(UserInfrastructure) repository: UserRepository) {
     this.repository = repository;
   }
 
-  execute(user: User): Observable<User> {
-    return this.repository.add(user);
+  execute(id: string): Observable<User> {
+    return this.repository.delete(id);
   }
 }

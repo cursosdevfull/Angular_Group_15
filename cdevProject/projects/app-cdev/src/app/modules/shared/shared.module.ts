@@ -1,9 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { WebcamModule } from 'ngx-webcam';
 
 import { MaterialModule } from '../material/material.module';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ContainerComponent } from './components/container/container.component';
+import { ExportComponent } from './components/export/export.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { TableComponent } from './components/table/table.component';
@@ -20,8 +26,18 @@ import { RecortarPipe } from './pipes/recortar.pipe';
     RecortarPipe,
     PhotoComponent,
     UploadDirective,
+    ConfirmComponent,
+    ExportComponent,
   ],
-  imports: [CommonModule, MaterialModule, NgScrollbarModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    NgScrollbarModule,
+    WebcamModule,
+    MatSlideToggleModule,
+    MatBottomSheetModule,
+    MatListModule,
+  ],
   exports: [
     TitleComponent,
     TableComponent,

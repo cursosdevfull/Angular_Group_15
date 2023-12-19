@@ -11,17 +11,30 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row" class="align-right">
-          <button mat-icon-button color="primary" matTooltip="EDIT" (click)="openModal(row)">
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="EDIT"
+            (click)="openModal(row)"
+          >
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="accent" matTooltip="DELETE">
+          <button
+            mat-icon-button
+            color="accent"
+            matTooltip="DELETE"
+            (click)="delete(row)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>
     </cdev-table>
   </ng-scrollbar>
-  <div>
+  <div class="pie">
+    <button mat-flat-button color="warn" (click)="showOptionsToExport()">
+      Export
+    </button>
     <cdev-paginator
       [quantityRecords]="quantityRecords"
       [pageSize]="pageSize"

@@ -7,12 +7,20 @@ import { MaterialModule } from '../../../material/material.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { UserByPage } from '../../application/user-by-page';
 import { UserCreate } from '../../application/user-create';
+import { UserDelete } from '../../application/user-delete';
 import { UserGetAll } from '../../application/user-get-all';
+import { UserUpdate } from '../../application/user-update';
 import { UserInfrastructure } from '../user.infrastructure';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { ListUserComponent } from './components/list-user/list-user.component';
 
-const providersApplication = [UserCreate, UserGetAll, UserByPage];
+const providersApplication = [
+  UserCreate,
+  UserGetAll,
+  UserByPage,
+  UserUpdate,
+  UserDelete,
+];
 const providersInfrastructure = [UserInfrastructure];
 
 @NgModule({

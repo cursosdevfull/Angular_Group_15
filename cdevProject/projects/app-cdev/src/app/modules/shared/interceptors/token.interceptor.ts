@@ -23,6 +23,8 @@ export class TokenInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    if (req.url.includes('amazonaws.com')) return next.handle(req);
+
     const token = this.storage.get('accessToken');
 
     const cloneRequest = req.clone({

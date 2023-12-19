@@ -7,7 +7,6 @@ import { Pagination } from '../../core/helpers/pagination';
 import { UserRepository } from '../domain/repositories/user.repository';
 import { User } from '../domain/roots/user';
 import { UserDto } from './dtos/user.dto';
-import { UserMock } from './mocks/user.mock';
 
 export interface Welcome5 {
   id: number;
@@ -49,9 +48,19 @@ export class UserInfrastructure implements UserRepository {
     );
   }
 
-  async add(user: User): Promise<User> {
-    // await this.validateUser(user);
-    return UserMock.add(user);
+  update(user: User): Observable<User> {
+    return this.http.put<User>(
+      `${variables.apiUrl}/v1/user/${user.properties().id}`,
+      user
+    );
+  }
+
+  add(user: User): Observable<User> {
+    return this.http.post<User>(`${variables.apiUrl}/v1/user`, user);
+  }
+
+  delete(id: string): Observable<User> {
+    return this.http.delete<User>(`${variables.apiUrl}/v1/user/${id}`);
   }
 
   getAll(): Observable<User[]> {
