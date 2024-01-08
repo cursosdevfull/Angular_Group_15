@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <h3>{{ title }}</h3>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+<form mat-dialog-content [formGroup]="fg">
+  <div class="fields">
+
+    <div>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required />
+        <mat-error>Field is required</mat-error>
+      </mat-form-field>
+      
+    </div>
+  </div>
+  <div class="form-buttons">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="fg.invalid"
+      (click)="save()"
+    >
+      Save
+    </button>
+    <button mat-button mat-dialog-close type="button">Close</button>
+  </div>
+</form>

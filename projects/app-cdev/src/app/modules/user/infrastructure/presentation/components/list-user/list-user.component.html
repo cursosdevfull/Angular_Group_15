@@ -1,0 +1,44 @@
+<cdev-title>
+  <button mat-raised-button color="primary" (click)="openModal()">
+    <mat-icon>add</mat-icon>
+    <span>ADD</span>
+  </button>
+</cdev-title>
+
+<cdev-container>
+  <ng-scrollbar class="maxHeightScrollbar">
+    <cdev-table-lib [data]="data" [metadata]="metadata">
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row" class="align-right">
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="EDIT"
+            (click)="openModal(row)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="accent"
+            matTooltip="DELETE"
+            (click)="delete(row)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    </cdev-table-lib>
+  </ng-scrollbar>
+  <div class="estilo_pie">
+    <button mat-flat-button color="warn" (click)="showOptionsToExport()">
+      Export
+    </button>
+    <cdev-paginator
+      [quantityRecords]="quantityRecords"
+      [pageSize]="pageSize"
+      (onChangePage)="changePage($event)"
+    ></cdev-paginator>
+  </div>
+</cdev-container>
