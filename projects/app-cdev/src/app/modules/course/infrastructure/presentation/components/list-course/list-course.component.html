@@ -24,6 +24,7 @@
             color="accent"
             matTooltip="DELETE"
             (click)="delete(row)"
+            *rolesAllowed="['STUDENT']"
           >
             <mat-icon>delete</mat-icon>
           </button>
@@ -32,7 +33,12 @@
     </cdev-table>
   </ng-scrollbar>
   <div class="estilo_pie">
-    <button mat-flat-button color="warn" (click)="showOptionsToExport()">
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="showOptionsToExport()"
+      *rolesAllowed="['STUDENT', 'TEACHER']"
+    >
       Export
     </button>
     <cdev-paginator

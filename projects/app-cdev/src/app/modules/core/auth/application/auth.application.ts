@@ -8,6 +8,8 @@ import { AuthAdapter } from '../infrastructure/auth.adapter';
 
 @Injectable()
 export class AuthApplication {
+  private isUserLoggedIn = false;
+
   constructor(
     @Inject(AuthAdapter) private readonly adapter: AuthPort,
     private readonly storage: StorageApplication,
@@ -17,6 +19,7 @@ export class AuthApplication {
   login(auth: Auth) {
     this.adapter.login(auth).subscribe({
       next: (data) => {
+        this.isUserLoggedIn = true;
         this.storage.save('accessToken', data.accessToken);
         this.storage.save('refreshToken', data.refreshToken);
         this.router.navigate(['/course']);
@@ -25,6 +28,7 @@ export class AuthApplication {
   }
 
   logout() {
+    this.isUserLoggedIn = false;
     this.storage.remove('accessToken');
     this.storage.remove('refreshToken');
     this.router.navigate(['/']);
@@ -32,5 +36,10 @@ export class AuthApplication {
 
   getNewAccessToken(refreshToken: string) {
     return this.adapter.getNewAccessToken(refreshToken);
+  }
+
+  isLogged() {
+    const accessToken = this.storage.get('accessToken') ?? '';
+    return this.isUserLoggedIn || !!accessToken;
   }
 }

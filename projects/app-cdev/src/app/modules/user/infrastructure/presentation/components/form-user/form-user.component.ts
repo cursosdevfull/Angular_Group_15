@@ -1,6 +1,7 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_SELECT_SCROLL_STRATEGY_PROVIDER } from '@angular/material/select';
 import { ImageApplication } from 'projects/app-cdev/src/app/modules/core/images/application/image.application';
 
 import environment from '../../../../../../../assets/config/enviroment.json';
@@ -12,6 +13,7 @@ import { Role } from '../../../../../role/domain/role';
   templateUrl: './form-user.component.html',
   styleUrls: ['./form-user.component.css'],
   encapsulation: ViewEncapsulation.None,
+  providers: [MAT_SELECT_SCROLL_STRATEGY_PROVIDER],
 })
 export class FormUserComponent {
   readonly title: string;

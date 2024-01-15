@@ -16,6 +16,7 @@ import { TableComponent } from './components/table/table.component';
 import { TitleComponent } from './components/title/title.component';
 import { UploadDirective } from './directives/upload.directive';
 import { RecortarPipe } from './pipes/recortar.pipe';
+import { RolesAllowedDirective } from './directives/roles-allowed.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RecortarPipe } from './pipes/recortar.pipe';
     UploadDirective,
     ConfirmComponent,
     ExportComponent,
+    RolesAllowedDirective,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import { RecortarPipe } from './pipes/recortar.pipe';
     PaginatorComponent,
     RecortarPipe,
     PhotoComponent,
+    RolesAllowedDirective,
   ],
 })
 export class SharedModule {}

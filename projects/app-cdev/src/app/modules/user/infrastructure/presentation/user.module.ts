@@ -14,6 +14,7 @@ import { UserUpdate } from '../../application/user-update';
 import { UserInfrastructure } from '../user.infrastructure';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { ListUserComponent } from './components/list-user/list-user.component';
+import { UserRoutingModule } from './user-routing.module';
 
 const providersApplication = [
   UserCreate,
@@ -33,6 +34,7 @@ const providersInfrastructure = [UserInfrastructure];
     MaterialModule,
     ReactiveFormsModule,
     TableModule,
+    UserRoutingModule,
   ],
   exports: [ListUserComponent],
   providers: [...providersApplication, ...providersInfrastructure],

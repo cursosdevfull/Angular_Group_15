@@ -1,0 +1,44 @@
+.maxHeightScrollbarDashboard {
+  height: calc(100vh - 64px - 71px);
+}
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.graphSales {
+  width: 500px;
+  background-color: rgb(30, 41, 59);
+  border: 1px solid #000;
+  box-shadow: 0 22px 35px -16px rgba(0, 0, 0, 0.71);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.graphSales h2 {
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.graphAverage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.graphIncomesMonthly {
+  background-color: whitesmoke;
+  border: 1px solid #ccc;
+  box-shadow: 0 22px 35px -16px rgba(0, 0, 0, 0.71);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  width: 30%;
+}
