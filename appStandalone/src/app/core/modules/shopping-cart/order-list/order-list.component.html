@@ -1,0 +1,7 @@
+<h1>Total productos: {{ total() }}</h1>
+<span>{{ empty() }}</span>
+<ul>
+  <li *ngFor="let product of products()">{{ product }}</li>
+</ul>
+<button (click)="add()">Agregar producto</button>
+<button (click)="deleteAll()">Borrar todo</button>
